@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Uppsala Dialoger - Invite Link Obfuscator</title>
+    
+    <meta name="description" content="Uppsala Dialoger Invite Link Obfuscator for secure video conferencing">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <meta content="utf-8" http-equiv="encoding" />
+    <meta name="copyright" content="&copy; 2020 Steve Seguin" />
+    
+    <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon" />
+    <link id="favicon1" rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+    <link id="favicon2"  rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+    <link id="favicon3" rel="icon" href="favicon.ico" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+    
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            background-color:#343840;
+            color: #DDD;;
+            font-family: sans-serif, Arial, Helvetica;
+            text-align: center;
+        }
+        a {
+            color:#DDD;
+        }
+        iframe {
+            border:0;
+            margin:0;
+            padding:0;
+            display:block;
+            margin:0;
+            width:100%;
+            height:100%;
+        }
+        .popup-message {
+            align-text: center;
+            position: absolute;
+            z-index: 35 !important;
+            padding: 3px !important;
+            min-width: 180px !important;
+            background-color: #fff !important;
+            border: solid 1px #dfdfdf !important;
+            box-shadow: 1px 1px 2px #cfcfcf !important;
+            color:black;
+        }
+    </style>
+</head>
+<body id="body">
+<script>
+    // Immediately redirect to the main page with the current path as a query parameter
+    var currentPath = window.location.pathname;
+    if (currentPath && currentPath.length > 1) {
+        // Remove the leading slash and redirect to main page with path as query param
+        var pathPart = currentPath.substring(1);
+        window.location.replace('/?path=' + encodeURIComponent(pathPart));
+    } else {
+        window.location.replace('/');
+    }
+</script>
+</body>
+</html>
