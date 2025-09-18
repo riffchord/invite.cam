@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Uppsala Dialoger Integration</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+</head>
+<body>
+    <h1>Test Uppsala Dialoger Integration</h1>
+    
+    <h2>Test URLs:</h2>
+    <ul>
+        <li><a href="https://riffchord.github.io/uppsala_dialoger/?push=test123">Original Uppsala Dialoger URL</a></li>
+        <li><a href="#" id="obfuscated-link">Obfuscated Link (will be generated below)</a></li>
+    </ul>
+    
+    <h2>How to test:</h2>
+    <ol>
+        <li>Copy the original Uppsala Dialoger URL</li>
+        <li>Go to <a href="https://riffchord.github.io/invite.cam/">https://riffchord.github.io/invite.cam/</a></li>
+        <li>Paste the URL and click "Obfuscate!"</li>
+        <li>The obfuscated link will be generated and copied to clipboard</li>
+        <li>Test the obfuscated link to ensure it redirects to your Uppsala Dialoger instance</li>
+    </ol>
+    
+    <h2>Example obfuscated URL structure:</h2>
+    <p>The obfuscated URLs will look like:</p>
+    <code>https://riffchord.github.io/invite.cam/[encrypted-string]</code>
+    
+    <script>
+        // Test encryption/decryption logic
+        var key = "OBSNINJAFORLIFE";
+        var testUrl = "uppsala_dialoger/?push=test123&label=Test%20Room";
+        
+        // Encrypt
+        var encrypted = CryptoJS.AES.encrypt(testUrl, key);
+        var encryptedString = encrypted.toString();
+        
+        // Decrypt
+        var decrypted = CryptoJS.AES.decrypt(encryptedString, key);
+        var decryptedUrl = decrypted.toString(CryptoJS.enc.Utf8);
+        
+        // Update the page with results
+        document.getElementById('obfuscated-link').href = 'https://riffchord.github.io/invite.cam/' + encryptedString;
+        document.getElementById('obfuscated-link').textContent = 'https://riffchord.github.io/invite.cam/' + encryptedString.substring(0, 20) + '...';
+        
+        console.log('Original:', testUrl);
+        console.log('Encrypted:', encryptedString);
+        console.log('Decrypted:', decryptedUrl);
+        console.log('Full obfuscated URL:', 'https://riffchord.github.io/invite.cam/' + encryptedString);
+    </script>
+</body>
+</html>

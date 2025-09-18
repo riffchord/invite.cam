@@ -88,8 +88,8 @@ function process(event=false){
 	input = input.replace('?room=', '?r=');
 	
 	var encrypted = CryptoJS.AES.encrypt(input, key);
-	document.getElementById("urloutput").innerHTML = "<a href='https://invite.cam/"+ encrypted.toString()+"'>https://invite.cam/"+encrypted.toString()+"</a>";
-	copyFunction("https://invite.cam/"+encrypted.toString());
+	document.getElementById("urloutput").innerHTML = "<a href='https://riffchord.github.io/invite.cam/"+ encrypted.toString()+"'>https://riffchord.github.io/invite.cam/"+encrypted.toString()+"</a>";
+	copyFunction("https://riffchord.github.io/invite.cam/"+encrypted.toString());
 	
 	popupMessage(event);
 	
