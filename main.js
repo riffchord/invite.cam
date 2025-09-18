@@ -13,6 +13,12 @@ function process(event=false){
 		input = input.replace('https://vdo.ninja/', 'vdo.ninja/');
 	} else if (input.startsWith("http://vdo.ninja/")){
 		input = input.replace('http://vdo.ninja/', 'vdo.ninja/');
+	} else if (input.startsWith("https://riffchord.github.io/uppsala_dialoger/")){
+		input = input.replace('https://riffchord.github.io/uppsala_dialoger/', 'uppsala_dialoger/');
+	} else if (input.startsWith("http://riffchord.github.io/uppsala_dialoger/")){
+		input = input.replace('http://riffchord.github.io/uppsala_dialoger/', 'uppsala_dialoger/');
+	} else if (input.startsWith("riffchord.github.io/uppsala_dialoger/")){
+		input = input.replace('riffchord.github.io/uppsala_dialoger/', 'uppsala_dialoger/');
 	} 
 	
 	input = input.replace('&view=', '&v=');
@@ -96,6 +102,7 @@ if (window.location.pathname.length>20){
 	
 	decrypted = decrypted.toString(CryptoJS.enc.Utf8);
 	decrypted = decrypted.replace("obs.ninja","vdo.ninja");
+	decrypted = decrypted.replace("uppsala_dialoger","riffchord.github.io/uppsala_dialoger");
 	
 	if (!decrypted){
 		decrypted = "https://vdo.ninja/";
@@ -138,6 +145,13 @@ if (window.location.pathname.length>20){
 			} else {
 				decrypted+="?noheader";
 			}
+		} else if (decrypted.startsWith("uppsala_dialoger/")){
+			decrypted = "https://riffchord.github.io/"+decrypted;
+			if (decrypted.includes("?")){
+				decrypted+="&noheader";
+			} else {
+				decrypted+="?noheader";
+			}
 		} else {
 			decrypted = "https://vdo.ninja/"+decrypted;
 			if (decrypted.includes("?")){
@@ -158,20 +172,23 @@ if (window.location.pathname.length>20){
 			decrypted.startsWith("https://player.clevercast.com/") || 
 			decrypted.startsWith("https://socialstream.ninja/") || 
 			decrypted.startsWith("https://comms.cam/") || 
-			decrypted.startsWith("https://rtc.ninja/"))){
+			decrypted.startsWith("https://rtc.ninja/") ||
+			decrypted.startsWith("https://riffchord.github.io/uppsala_dialoger/"))){
 			document.write("This link is not approved to be accessed. Please contact the site's administrator is this is a new issue.");
 			decrypted = false;
 		} else if (decrypted){
 			    var iframe = document.createElement("iframe");
 			    if (decrypted.startsWith("https://vdo.ninja/alpha/?")){
 			        iframe.src = "https://vdo.ninja/alpha/?i="+encodeURIComponent(location.pathname.split(/\/(.+)/)[1]);
-			    } else if (decrypted.startsWith("https://vdo.ninja/beta/?")){
-			        iframe.src = "https://vdo.ninja/beta/?i="+encodeURIComponent(location.pathname.split(/\/(.+)/)[1]);
-			    } else if (decrypted.startsWith("https://vdo.ninja/?")){
-			        iframe.src = "https://vdo.ninja/?i="+encodeURIComponent(location.pathname.split(/\/(.+)/)[1]);
-			    } else {
-			        iframe.src = decrypted;
-			    }
+		} else if (decrypted.startsWith("https://vdo.ninja/beta/?")){
+			iframe.src = "https://vdo.ninja/beta/?i="+encodeURIComponent(location.pathname.split(/\/(.+)/)[1]);
+		} else if (decrypted.startsWith("https://vdo.ninja/?")){
+			iframe.src = "https://vdo.ninja/?i="+encodeURIComponent(location.pathname.split(/\/(.+)/)[1]);
+		} else if (decrypted.startsWith("https://riffchord.github.io/uppsala_dialoger/?")){
+			iframe.src = "https://riffchord.github.io/uppsala_dialoger/?i="+encodeURIComponent(location.pathname.split(/\/(.+)/)[1]);
+		} else {
+			iframe.src = decrypted;
+		}
 			    
 			    iframe.allow = "document-domain;encrypted-media;sync-xhr;usb;web-share;cross-origin-isolated;midi *;geolocation;camera *;microphone *;fullscreen;picture-in-picture;display-capture;accelerometer;autoplay;gyroscope;screen-wake-lock;";
 			    iframe.setAttribute("allowtransparency", "true");
@@ -225,17 +242,17 @@ if (window.location.pathname.length>20){
 	document.getElementById("body").appendChild(container);
 
 	var title = document.createElement("h3");
-	title.innerHTML = "URL Obfuscator for VDO.Ninja<br />";
+	title.innerHTML = "URL Obfuscator for Uppsala Dialoger<br />";
 	container.appendChild(title);
 
 	var input = document.createElement("input");
-	input.placeholder = "Paste the VDO.Ninja invite URL here";
+	input.placeholder = "Paste the Uppsala Dialoger invite URL here";
 	input.id = "urlInpput";
 	input.style.padding = "10px";
 	input.style.width = "500px";
 	input.style.maxWidth = "90%";
-	input.title = "Put an VDO.Ninja invite link here";
-	input.alt = "Put an VDO.Ninja invite link here";
+	input.title = "Put an Uppsala Dialoger invite link here";
+	input.alt = "Put an Uppsala Dialoger invite link here";
 	container.appendChild(input);
 	
 	var button = document.createElement("button");
@@ -254,13 +271,13 @@ if (window.location.pathname.length>20){
 	
 	var div = document.createElement("a");
 	div.style.margin = "20px";
-	div.href= "https://invite.vdo.ninja";
+	div.href= "https://riffchord.github.io/uppsala_dialoger/";
 	div.innerHTML = "or create a new Invite Link here";
 	container.appendChild(div);
 	
 	var div = document.createElement("h5");
 	div.style.margin = "20px";
-	div.innerHTML = "<br /><br />Notice: Due to abuse, only VDO.Ninja and white-listed domains are allowed now.<br />Contact me here to report abuse: <i>steve@seguin.email</i>"
+	div.innerHTML = "<br /><br />Notice: Due to abuse, only VDO.Ninja, Uppsala Dialoger and white-listed domains are allowed now.<br />Contact me here to report abuse: <i>steve@seguin.email</i>"
 	container.appendChild(div);
 }
 
